@@ -81,7 +81,7 @@ section, aside, footer {
 .status { color: var(--neon-purple); font-family: 'Share Tech Mono', monospace; }
 
 /* =========================================
-   ZONE PROFIL (CORRECTION FLEXBOX)
+   ZONE PROFIL 
    ========================================= */
 .zone-profil .card {
     display: flex;
@@ -168,8 +168,8 @@ section, aside, footer {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    opacity: 1 !important;
-    visibility: visible !important;
+    opacity: 1;
+    visibility: visible;
     background: rgba(20, 0, 30, 0.5);
 }
 #zdog-canvas {
@@ -234,32 +234,32 @@ section, aside, footer {
 }
 
 .leaflet-container {
-    background: transparent !important;
+    background: transparent ;
     outline: none;
 }
 .leaflet-tile-container { filter: brightness(1.2); }
 .leaflet-tile { filter: brightness(1.2); }
 
-/* CORRECTION DE L'ÉTIQUETTE ROSE */
+/* ÉTIQUETTE ROSE */
 .alfea-label {
-    background-color: rgba(255, 0, 85, 0.9) !important;
+    background-color: rgba(255, 0, 85, 0.9);
     border: 1px solid #fff;
-    color: white !important;
+    color: white;
     font-family: 'Orbitron', sans-serif;
     font-size: 0.8rem;
     font-weight: bold;
     padding: 3px 8px;
-    box-shadow: 0 0 15px rgba(255, 0, 85, 0.8) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.8) ;
     border-radius: 2px;
     
-    /* IMPORTANT : Je désactive le filtre ici pour éviter que l'étiquette devienne verte */
-    filter: none !important; 
+    /* Je désactive le filtre ici pour éviter que l'étiquette devienne verte */
+    filter: none ; 
 }
 
 /* Flèche de l'étiquette */
 .leaflet-tooltip-top:before,
 .leaflet-tooltip-bottom:before {
-    border-top-color: rgba(255, 0, 85, 0.9) !important;
-    border-bottom-color: rgba(255, 0, 85, 0.9) !important;
-    filter: none !important;
+    border-top-color: rgba(255, 0, 85, 0.9) ;
+    border-bottom-color: rgba(255, 0, 85, 0.9);
+    filter: none;
 }

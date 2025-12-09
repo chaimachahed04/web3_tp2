@@ -1,4 +1,4 @@
-/* ANIME JS - Version corrigée */
+/* ANIME JS */
 const anime = window.anime;
 
 console.log("AnimeJS : Chargé");

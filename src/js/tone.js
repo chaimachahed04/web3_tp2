@@ -24,7 +24,7 @@ if (btnPlay && btnBass && Tone) {
     fairySynth.volume.value = -8; 
 
     // 2. Synthétiseur "Bass"
-    // Parfait pour les impacts lourds
+
     const bassSynth = new Tone.MembraneSynth({
         pitchDecay: 0.05,
         octaves: 10,
