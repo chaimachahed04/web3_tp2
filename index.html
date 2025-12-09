@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SONIC_VANGUARD // SYSTEM</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Rajdhani:wght@500;700&family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <div class="interface-container">
+        <header class="zone-header d-flex justify-content-between align-items-center p-3">
+            <div class="logo">/// PROJECT: MUSA_V.X ///</div>
+            <div class="status"><i class="bi bi-broadcast"></i> NET_SYNC: 100%</div>
+        </header>
+
+        <aside class="zone-profil p-3">
+            <div class="card h-100 bg-transparent border-0">
+                <div class="img-wrapper">
+                    <img src="assets/img/musa.png" class="card-img-top" alt="Avatar Musa">
+                    <div class="scan-bar"></div>
+                </div>
+                <div class="card-body ps-0 text-light">
+                    <h2 class="card-title glow-text">MUSA</h2>
+                    <div class="specs small font-monospace mt-3">
+                        <p><i class="bi bi-soundwave"></i> CLASS: HARMONY </p>
+                        <p><i class="bi bi-globe2"></i> ORIGIN: SECTOR MELODY</p>
+                        <p><i class="bi bi-battery-charging"></i> PSY-ENERGY: 98%</p>
+                    </div>
+                    <hr class="glow-hr">
+                    <div class="badges d-flex gap-2">
+                        <span class="hud-badge">SONIC</span>
+                        <span class="hud-badge">BASS</span>
+                        <span class="hud-badge">TECH</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="zone-stats p-3 position-relative">
+            <h5 class="section-title">COMBAT_METRICS</h5>
+            <div class="chart-container">
+                <canvas id="powerChart"></canvas>
+            </div>
+        </section>
+
+        <section class="zone-3d p-3 text-center">
+            <h5 class="section-title">HARMONIC_VISUALIZER</h5>
+            <div class="canvas-wrapper">
+                <canvas id="zdog-canvas" width="600" height="400"></canvas>
+            </div>
+        </section>
+
+        <section class="zone-map p-3">
+            <h5 class="section-title">TARGET_LOC: ALFEA_BASE</h5>
+            <div id="map"></div>
+        </section>
+
+        <footer class="zone-player p-3 d-flex align-items-center justify-content-between">
+            <div class="track-info">
+                <span class="glow-text fw-bold">>> AUDIO_STREAM:</span> <span id="song-title">TRANSFORMATION_SEQ.WAV</span>
+            </div>
+            <div class="controls d-flex gap-3">
+                <button id="btn-play" class="btn-hud"><i class="bi bi-play-fill"></i> INITIALIZE</button>
+                <button id="btn-effect" class="btn-hud outline"><i class="bi bi-lightning-fill"></i> BASS_BOOST</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="https://unpkg.com/zdog@1.1.3/dist/zdog.dist.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="src/js/animejs.js" type="module"></script>
+    
+    <script>
+        // Petit fix pour dire au navigateur que Chart est chargé
+        window.Chart = Chart;
+    </script>
+    <script src="src/js/chartjs.js" type="module"></script>
+    
+    <script src="src/js/zdog.js" type="module"></script>
+    <script src="src/js/maplibre.js" type="module"></script> 
+    <script src="src/js/tone.js" type="module"></script>
+    <script src="src/js/main.js" type="module"></script>
+    
+</body>
+</html>

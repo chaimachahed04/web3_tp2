@@ -1,0 +1,265 @@
+/* =========================================
+   MON DESIGN SYSTEM (THÈME MUSA / WINX)
+   ========================================= */
+:root {
+    --neon-pink: #ff0055;
+    --neon-purple: #b026ff;
+    --dark-bg: #0f0014;
+    --glass: rgba(30, 0, 40, 0.85);
+    --grid-line: rgba(176, 38, 255, 0.2);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    /* J'ai créé un fond quadrillé pour donner un aspect technique */
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Mon effet de vieil écran (Scanlines) */
+.scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+    pointer-events: none; z-index: 999;
+}
+
+/* =========================================
+   MA STRUCTURE (GRID LAYOUT)
+   ========================================= */
+.interface-container {
+    display: grid;
+    height: 100vh;
+    padding: 15px;
+    gap: 15px;
+    /* J'ai défini mes colonnes et lignes précisément */
+    grid-template-columns: 250px 1fr 300px;
+    grid-template-rows: 60px 1fr 220px 80px;
+    
+    grid-template-areas:
+        "header header header"
+        "profil stats  map"
+        "profil visua  map"
+        "player player player";
+}
+
+/* Placement des zones */
+.zone-header { grid-area: header; border-bottom: 2px solid var(--neon-pink); }
+.zone-profil { grid-area: profil; }
+.zone-stats  { grid-area: stats; }
+.zone-3d     { grid-area: visua; }
+.zone-map    { grid-area: map; }
+.zone-player { grid-area: player; }
+
+/* =========================================
+   STYLE DES BOITES (HUD)
+   ========================================= */
+section, aside, footer {
+    background: var(--glass);
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.2);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title, .logo {
+    font-family: 'Audiowide', cursive;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+    margin-bottom: 10px;
+}
+.section-title { font-size: 1rem; }
+.logo { font-size: 1.5rem; letter-spacing: 2px; }
+.status { color: var(--neon-purple); font-family: 'Share Tech Mono', monospace; }
+
+/* =========================================
+   ZONE PROFIL (CORRECTION FLEXBOX)
+   ========================================= */
+.zone-profil .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: transparent;
+    border: none;
+}
+
+/* Cadre de l'image */
+.img-wrapper {
+    /* J'utilise flex-shrink: 0 pour empêcher l'image de s'écraser */
+    flex-shrink: 0; 
+    height: 230px; /* Je fixe une grande hauteur pour bien voir Musa */
+    position: relative;
+    border: 1px solid var(--neon-pink);
+    padding: 2px;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(20%) hue-rotate(320deg) saturate(1.2);
+}
+
+.scan-bar {
+    position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    animation: scan 3s infinite ease-in-out;
+}
+@keyframes scan { 0%, 100% { top: 0%; opacity: 0; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+/* Corps du profil (Texte + Badges) */
+.card-body {
+    flex-grow: 1; /* Prend tout l'espace restant */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.glow-text { color: #fff; text-shadow: 0 0 10px var(--neon-pink); }
+.glow-hr { border-color: var(--neon-purple); box-shadow: 0 0 5px var(--neon-purple); }
+
+.specs p {
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+/* J'utilise margin-top: auto pour pousser les badges tout en bas */
+.badges {
+    margin-top: auto;
+    padding-bottom: 2px;
+}
+
+.hud-badge {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    font-family: 'Audiowide';
+}
+
+/* =========================================
+   GRAPHIQUES & 3D
+   ========================================= */
+.chart-container { position: relative; height: 100%; width: 100%; }
+
+/* J'ajoute une ombre portée au graphique pour faire briller le texte comme du néon */
+#powerChart {
+    filter: drop-shadow(0 0 5px rgba(255, 0, 85, 0.6));
+}
+
+.canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: rgba(20, 0, 30, 0.5);
+}
+#zdog-canvas {
+    display: block;
+    width: 100%; 
+    height: 100%;
+    cursor: grab;
+}
+
+/* =========================================
+   LECTEUR AUDIO (FOOTER)
+   ========================================= */
+.zone-player {
+    background: rgba(255, 0, 85, 0.1);
+    border: 1px solid var(--neon-pink);
+}
+.btn-hud {
+    background: var(--neon-pink);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-family: 'Audiowide';
+    text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.btn-hud:hover {
+    background: white;
+    color: var(--neon-pink);
+    box-shadow: 0 0 20px var(--neon-pink);
+}
+.btn-hud.outline {
+    background: transparent;
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+}
+.btn-hud.outline:hover {
+    background: var(--neon-purple);
+    color: white;
+    box-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* =========================================
+   LA CARTE (CORRECTIF COULEURS)
+   ========================================= */
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    background-color: #0f0014;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* J'utilise des filtres pour rendre la carte mauve */
+.leaflet-tile-pane {
+    filter: sepia(100%) hue-rotate(230deg) saturate(400%) contrast(1.2) brightness(0.8);
+}
+.leaflet-marker-icon {
+    filter: hue-rotate(-230deg); /* Je protège les marqueurs */
+}
+
+.leaflet-container {
+    background: transparent !important;
+    outline: none;
+}
+.leaflet-tile-container { filter: brightness(1.2); }
+.leaflet-tile { filter: brightness(1.2); }
+
+/* CORRECTION DE L'ÉTIQUETTE ROSE */
+.alfea-label {
+    background-color: rgba(255, 0, 85, 0.9) !important;
+    border: 1px solid #fff;
+    color: white !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.8) !important;
+    border-radius: 2px;
+    
+    /* IMPORTANT : Je désactive le filtre ici pour éviter que l'étiquette devienne verte */
+    filter: none !important; 
+}
+
+/* Flèche de l'étiquette */
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before {
+    border-top-color: rgba(255, 0, 85, 0.9) !important;
+    border-bottom-color: rgba(255, 0, 85, 0.9) !important;
+    filter: none !important;
+}
